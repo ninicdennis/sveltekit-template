@@ -14,9 +14,7 @@
 	initializeStores();
 	const drawerStore = getDrawerStore();
 
-	function drawerOpen(): void {
-		drawerStore.open({});
-	}
+	const drawerOpen = () => drawerStore.open({});
 </script>
 
 <svelte:head>
@@ -43,7 +41,6 @@
 					</span>
 				</button>
 				<strong class="text-xl">SvelteKit Template</strong>
-				<strong class="text-lg" />
 			</svelte.fragment>
 			<svelte:fragment slot="trail">
 				<LightSwitch class="ml-2" rounded="rounded-full" />
