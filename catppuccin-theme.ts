@@ -4,8 +4,8 @@ export const CatppuccinTheme: CustomThemeConfig = {
 	name: 'catppuccin-theme',
 	properties: {
 		// =~= Theme Properties =~=
-		'--theme-font-family-base': `ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace`,
-		'--theme-font-family-heading': `ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace`,
+		'--theme-font-family-base': 'Rubik, sans-serif',
+		'--theme-font-family-heading': 'Rubik, sans-serif',
 		'--theme-font-color-base': '0 0 0',
 		'--theme-font-color-dark': '255 255 255',
 		'--theme-rounded-base': '8px',

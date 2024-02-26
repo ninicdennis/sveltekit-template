@@ -6,15 +6,36 @@
 		Drawer,
 		getDrawerStore,
 		LightSwitch,
-		Avatar
+		Avatar,
+		storePopup,
+		popup,
+		type PopupSettings
 	} from '@skeletonlabs/skeleton';
 	import '../app.pcss';
-	import Navigation from '$lib/Navigation.svelte';
+	import { IconMenu2 } from '@tabler/icons-svelte';
+	import {
+		computePosition,
+		autoUpdate,
+		offset,
+		shift,
+		flip,
+		arrow
+	} from '@floating-ui/dom';
 
+	import Navigation from '$lib/Navigation.svelte';
+	import ProfilePopup from '$lib/ProfilePopup.svelte';
+
+	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 	initializeStores();
 	const drawerStore = getDrawerStore();
 
 	const drawerOpen = () => drawerStore.open({});
+
+	const popupAvatar: PopupSettings = {
+		event: 'click',
+		target: 'popupAvatar',
+		placement: 'bottom'
+	};
 </script>
 
 <svelte:head>
@@ -22,33 +43,34 @@
 </svelte:head>
 
 <Drawer>
-	<h2 class="p-4">Navigation</h2>
+	<div class="flex items-center justify-between bg-secondary-500">
+		<h2 class="p-4 font-bold text-white">Navigation</h2>
+	</div>
 	<hr />
 	<Navigation />
 </Drawer>
 
 <AppShell slotSidebarLeft="bg-surface-500/5 w-0 lg:w-64">
 	<svelte:fragment slot="header">
-		<AppBar>
+		<AppBar background="bg-secondary-500" padding="p-2">
 			<svelte.fragment slot="lead" class="flex justify-between">
-				<button class="btn btn-sm mr-4 lg:hidden" on:click={drawerOpen}>
+				<button class="btn btn-sm lg:hidden" on:click={drawerOpen}>
 					<span>
-						<svg viewBox="0 0 100 80" class="fill-token h-4 w-4">
-							<rect width="100" height="20" />
-							<rect y="30" width="100" height="20" />
-							<rect y="60" width="100" height="20" />
-						</svg>
+						<IconMenu2 color="white" />
 					</span>
 				</button>
-				<strong class="text-xl">SvelteKit Template</strong>
+				<h1 class="h3 self-center pl-2 font-bold text-white">
+					SvelteKit Template
+				</h1>
 			</svelte.fragment>
 			<svelte:fragment slot="trail">
-				<LightSwitch class="ml-2" rounded="rounded-full" />
-
-				<Avatar
-					width="w-12"
-					border="border-2 border-surface-300-600-token hover:!border-primary-500"
-					cursor="cursor-pointer" />
+				<div use:popup={popupAvatar}>
+					<Avatar
+						width="w-12"
+						border="border-2 hover:!border-primary-500"
+						cursor="cursor-pointer" />
+				</div>
+				<ProfilePopup />
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
