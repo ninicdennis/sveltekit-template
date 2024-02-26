@@ -22,14 +22,14 @@
 		arrow
 	} from '@floating-ui/dom';
 
-	import Navigation from '$lib/Navigation.svelte';
-	import ProfilePopup from '$lib/ProfilePopup.svelte';
+	import Navigation from '$lib/components/Navigation.svelte';
+	import ProfilePopup from '$lib/components/ProfilePopup.svelte';
 
 	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 	initializeStores();
 	const drawerStore = getDrawerStore();
 
-	const drawerOpen = () => drawerStore.open({});
+	const drawerOpen = () => drawerStore.open({ width: 'w-3/5' });
 
 	const popupAvatar: PopupSettings = {
 		event: 'click',
@@ -42,7 +42,7 @@
 	<title>SvelteKit Template</title>
 </svelte:head>
 
-<Drawer>
+<Drawer class="bg-surface-500">
 	<div class="flex items-center justify-between bg-secondary-500">
 		<h2 class="p-4 font-bold text-white">Navigation</h2>
 	</div>
@@ -50,7 +50,7 @@
 	<Navigation />
 </Drawer>
 
-<AppShell slotSidebarLeft="bg-surface-500/5 w-0 lg:w-64">
+<AppShell slotSidebarLeft="dark:bg-surface-800 bg-surface-100 w-0 lg:w-64">
 	<svelte:fragment slot="header">
 		<AppBar background="bg-secondary-500" padding="p-2">
 			<svelte.fragment slot="lead" class="flex justify-between">
@@ -59,7 +59,7 @@
 						<IconMenu2 color="white" />
 					</span>
 				</button>
-				<h1 class="h3 self-center pl-2 font-bold text-white">
+				<h1 class="h3 self-center pl-2 font-semibold text-white">
 					SvelteKit Template
 				</h1>
 			</svelte.fragment>
