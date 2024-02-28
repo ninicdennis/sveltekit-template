@@ -5,14 +5,12 @@
 		initializeStores,
 		Drawer,
 		getDrawerStore,
-		LightSwitch,
 		Avatar,
 		storePopup,
 		popup,
 		type PopupSettings
 	} from '@skeletonlabs/skeleton';
 	import '../app.pcss';
-	import { IconMenu2 } from '@tabler/icons-svelte';
 	import {
 		computePosition,
 		autoUpdate,
@@ -24,6 +22,7 @@
 
 	import Navigation from '$lib/components/Navigation.svelte';
 	import ProfilePopup from '$lib/components/ProfilePopup.svelte';
+	import Icon from '@iconify/svelte';
 
 	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 	initializeStores();
@@ -56,7 +55,7 @@
 			<svelte.fragment slot="lead" class="flex justify-between">
 				<button class="btn btn-sm lg:hidden" on:click={drawerOpen}>
 					<span>
-						<IconMenu2 color="white" />
+						<Icon icon="mingcute:menu-fill" height={28} />
 					</span>
 				</button>
 				<h1 class="h3 self-center pl-2 font-semibold text-white">
