@@ -11,5 +11,6 @@
 <nav class="list-nav p-4">
 	<ul>
 		<li><a href="/" on:click={drawerClose}>Homepage</a></li>
+		<li><a href="/example" on:click={drawerClose}>Another Page</a></li>
 	</ul>
 </nav>
