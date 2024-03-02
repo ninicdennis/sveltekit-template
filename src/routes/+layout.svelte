@@ -8,7 +8,8 @@
 		Avatar,
 		storePopup,
 		popup,
-		type PopupSettings
+		type PopupSettings,
+		ProgressRadial
 	} from '@skeletonlabs/skeleton';
 	import '../app.pcss';
 	import {
@@ -25,6 +26,7 @@
 	import Icon from '@iconify/svelte';
 	import { fly } from 'svelte/transition';
 	import { cubicIn, cubicOut } from 'svelte/easing';
+	import { afterNavigate, beforeNavigate } from '$app/navigation';
 
 	export let data: { pathname: string };
 
@@ -45,6 +47,11 @@
 		target: 'popupAvatar',
 		placement: 'bottom'
 	};
+
+	let isLoading = false;
+
+	beforeNavigate(() => (isLoading = true));
+	afterNavigate(() => (isLoading = false));
 </script>
 
 <svelte:head>
@@ -85,11 +92,14 @@
 	</svelte:fragment>
 	<svelte:fragment slot="sidebarLeft"><Navigation /></svelte:fragment>
 	{#key data.pathname}
-		<div
-			class="flex flex-col justify-center p-4"
-			in:fly={transitionIn}
-			out:fly={transitionOut}>
-			<slot />
+		<div in:fly={transitionIn} out:fly={transitionOut} class="h-full">
+			{#if isLoading}
+				<div class="flex h-full w-full items-center justify-center">
+					<ProgressRadial />
+				</div>
+			{:else}
+				<slot />
+			{/if}
 		</div>
 	{/key}
 </AppShell>
